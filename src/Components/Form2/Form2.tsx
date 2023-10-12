@@ -67,7 +67,7 @@ const Form2 = () => {
           </button>
           {result !== null && (
             <div>
-              <h3>Result:</h3>
+              <h3>Результат:</h3>
               <p>{result}</p>
             </div>
           )}
