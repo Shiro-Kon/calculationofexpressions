@@ -68,7 +68,7 @@ const Form2 = () => {
       </div>
       <div>
         <label>
-          <input type="checkbox" checked={showResult} onChange={handleShowResultChange} />
+          <input type="checkbox" checked={showResult} onChange={handleShowResultChange} /> 
           Show result
         </label>
       </div>
@@ -76,11 +76,12 @@ const Form2 = () => {
         <label>
           <input
             type="radio"
+            className="rad-btn"
             name="formula"
             value="Formula 1"
             checked={selectedFormula?.name === "Formula 1"}
             onChange={() => handleFormulaChange("Formula 1")}
-          />
+          /> 
           Formula 1
         </label>
       </div>
@@ -88,11 +89,12 @@ const Form2 = () => {
         <label>
           <input
             type="radio"
+            className="rad-btn"
             name="formula"
             value="Formula 2"
             checked={selectedFormula?.name === "Formula 2"}
             onChange={() => handleFormulaChange("Formula 2")}
-          />
+          /> 
           Formula 2
         </label>
       </div>
@@ -100,11 +102,12 @@ const Form2 = () => {
         <label>
           <input
             type="radio"
+            className="rad-btn"
             name="formula"
             value="Formula 3"
             checked={selectedFormula?.name === "Formula 3"}
             onChange={() => handleFormulaChange("Formula 3")}
-          />
+          /> 
           Formula 3
         </label>
       </div>

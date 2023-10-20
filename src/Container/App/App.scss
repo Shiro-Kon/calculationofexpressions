@@ -8,6 +8,63 @@ body {
   flex-direction: column;
   height: 100%;
 }
+.range-container{
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 1px;
+  width: 100%;
+  z-index: 1;
+}
+.range-inp{
+  -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+.range-inp:hover{
+  opacity: 1;
+}
+.range-inp::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 25px;
+  border-radius: 20px;
+  background: #0084ff;
+  cursor: pointer;
+}
+
+.range-inp::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #0084ff;
+  cursor: pointer;
+}
+
+
+.progress-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 30px;
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+  z-index: 1;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #0084ff;
+  width: 0%;
+}
+
 .center{
     margin: 0;
     padding: 0;
@@ -21,7 +78,7 @@ body {
 .up{
   display: flex;
   position: fixed;
-  bottom: 0;
+  bottom: 30px;
   right: 0;
   margin: 10px;
   border-radius: 50px;
@@ -44,4 +101,20 @@ body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   padding: 0;
  
+}
+.inp-num{
+  position: fixed;
+  bottom: 40px;
+  right: 100px;
+  width: 70px;
+  height: 70px;
+  padding: 10px;
+  text-align: center;
+  border: none;
+  background-color: rgb(144, 157, 191);
+  filter: drop-shadow(0px 3px 5px black);
+  border-radius: 50px;
+  outline: none;
+  font-size: 20px;
+  color: white;
 }
