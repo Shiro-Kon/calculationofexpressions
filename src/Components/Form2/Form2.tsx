@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 type Formula = {
   name: string;
@@ -18,16 +18,25 @@ const formulas: Formula[] = [
       return Math.random() * 200;
     },
   },
+  {
+    name: "Formula 3",
+    calculate: () => {
+      return Math.random() * 300;
+    },
+  },
 ];
 
 const Form2 = () => {
   const [result, setResult] = useState<number | null>(null);
   const [selectedFormula, setSelectedFormula] = useState<Formula | null>(null);
+  const [showResult, setShowResult] = useState(false);
 
-  const randomFomula = () => {
-    const randomIndex = Math.floor(Math.random() * formulas.length);
-    const formula = formulas[randomIndex];
+  const handleFormulaChange = (selectedName: string) => {
+    const formula = formulas.find((f) => f.name === selectedName) || null;
     setSelectedFormula(formula);
+    if (!showResult) {
+      setResult(null);
+    }
   };
 
   const performCalc = () => {
@@ -48,15 +57,58 @@ const Form2 = () => {
     setSelectedFormula(null);
   };
 
+  const handleShowResultChange = () => {
+    setShowResult(!showResult);
+  };
+
   return (
     <div className="box">
       <div className="title">
         <h3 id="ind">Індивідульне завдання</h3>
       </div>
-      <button className="button" onClick={randomFomula}>
-        Виберіть випадкову формулу
-      </button>
-      {selectedFormula  && (
+      <div>
+        <label>
+          <input type="checkbox" checked={showResult} onChange={handleShowResultChange} />
+          Show result
+        </label>
+      </div>
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="formula"
+            value="Formula 1"
+            checked={selectedFormula?.name === "Formula 1"}
+            onChange={() => handleFormulaChange("Formula 1")}
+          />
+          Formula 1
+        </label>
+      </div>
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="formula"
+            value="Formula 2"
+            checked={selectedFormula?.name === "Formula 2"}
+            onChange={() => handleFormulaChange("Formula 2")}
+          />
+          Formula 2
+        </label>
+      </div>
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="formula"
+            value="Formula 3"
+            checked={selectedFormula?.name === "Formula 3"}
+            onChange={() => handleFormulaChange("Formula 3")}
+          />
+          Formula 3
+        </label>
+      </div>
+      {selectedFormula && (
         <div className="center">
           <div className="title">Вибрана формула: {selectedFormula.name}</div>
           <button className="button" onClick={performCalc}>
@@ -65,7 +117,7 @@ const Form2 = () => {
           <button className="button" onClick={clearResult}>
             Очистити результат
           </button>
-          {result !== null && (
+          {showResult && result !== null && (
             <div>
               <h3>Результат:</h3>
               <p>{result}</p>
