@@ -26,6 +26,21 @@ const formulas: Formula[] = [
   },
 ];
 
+interface ResultDisplayProps {
+  result: number | null;
+  onClose: () => void;
+}
+
+const ResultDisplay: React.FC<ResultDisplayProps> = ({ result, onClose }) => (
+  <div className="result-window">
+    <div className="result-container">
+      <h3>Результат:</h3>
+      <p>{result}</p>
+      <button className="close-btn" onClick={onClose}>Закрити</button>
+    </div>
+  </div>
+);
+
 const Form2 = () => {
   const [result, setResult] = useState<number | null>(null);
   const [selectedFormula, setSelectedFormula] = useState<Formula | null>(null);
@@ -61,6 +76,10 @@ const Form2 = () => {
     setShowResult(!showResult);
   };
 
+  const closeResultWindow = () => {
+    setShowResult(false);
+  };
+
   return (
     <div className="box">
       <div className="title">
@@ -68,7 +87,7 @@ const Form2 = () => {
       </div>
       <div>
         <label>
-          <input type="checkbox" checked={showResult} onChange={handleShowResultChange} /> 
+          <input type="checkbox" checked={showResult} onChange={handleShowResultChange} />
           Show result
         </label>
       </div>
@@ -81,7 +100,7 @@ const Form2 = () => {
             value="Formula 1"
             checked={selectedFormula?.name === "Formula 1"}
             onChange={() => handleFormulaChange("Formula 1")}
-          /> 
+          />
           Formula 1
         </label>
       </div>
@@ -94,7 +113,7 @@ const Form2 = () => {
             value="Formula 2"
             checked={selectedFormula?.name === "Formula 2"}
             onChange={() => handleFormulaChange("Formula 2")}
-          /> 
+          />
           Formula 2
         </label>
       </div>
@@ -107,7 +126,7 @@ const Form2 = () => {
             value="Formula 3"
             checked={selectedFormula?.name === "Formula 3"}
             onChange={() => handleFormulaChange("Formula 3")}
-          /> 
+          />
           Formula 3
         </label>
       </div>
@@ -121,10 +140,7 @@ const Form2 = () => {
             Очистити результат
           </button>
           {showResult && result !== null && (
-            <div>
-              <h3>Результат:</h3>
-              <p>{result}</p>
-            </div>
+            <ResultDisplay result={result} onClose={closeResultWindow} />
           )}
         </div>
       )}
